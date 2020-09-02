@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="    
-    	http://www.springframework.org/schema/beans      
-    	http://www.springframework.org/schema/beans/spring-beans.xsd      
-    	http://camel.apache.org/schema/spring 
-    	http://camel.apache.org/schema/spring/camel-spring.xsd">	
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://camel.apache.org/schema/spring
+			http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-	<camelContext id="camel"
-		xmlns="http://camel.apache.org/schema/spring">
+	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
 
-		<route id="route1">
-			<from uri="timer:demo?delay=5000" />
-			<log message="Process route 1" />
-			<to uri="direct:route2"/>
-		</route>
+		<restConfiguration bindingMode="auto" component="servlet" />
 
-		<route id="route2">
-			<from uri="direct:route2" />
-			<log message="Process route 2" />
-			<to uri="direct:route3"/>
-		</route>
-		
-		<route id="route3">
-			<from uri="direct:route3" />
-			<log message="Process route 3" />
-            <setBody>
-                <constant>done</constant>
-            </setBody>
+		<rest>
+			<post consumes="application/json" produces="text" uri="/say" type="java.lang.String" outType="java.lang.String">
+				<param name="body" required="true" type="body" />
+				<to uri="direct:rest1" />
+			</post>
+		</rest>
+
+		<route>
+			<from uri="direct:rest1" />
+			<log message="## body:${body}"/>
+		    <transform>
+		      <simple>Hello ${body}</simple>
+		    </transform>
 		</route>
 
 	</camelContext>
+
 </beans>
