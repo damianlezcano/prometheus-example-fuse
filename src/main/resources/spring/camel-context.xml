@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="    
+    	http://www.springframework.org/schema/beans      
+    	http://www.springframework.org/schema/beans/spring-beans.xsd      
+    	http://camel.apache.org/schema/spring 
+    	http://camel.apache.org/schema/spring/camel-spring.xsd">	
+
+	<camelContext id="camel"
+		xmlns="http://camel.apache.org/schema/spring">
+
+		<route id="route1">
+			<from uri="timer:demo?delay=5000" />
+			<log message="Process route 1" />
+			<to uri="direct:route2"/>
+		</route>
+
+		<route id="route2">
+			<from uri="direct:route2" />
+			<log message="Process route 2" />
+			<to uri="direct:route3"/>
+		</route>
+		
+		<route id="route3">
+			<from uri="direct:route3" />
+			<log message="Process route 3" />
+            <setBody>
+                <constant>done</constant>
+            </setBody>
+		</route>
+
+	</camelContext>
+</beans>
