@@ -7,6 +7,25 @@
 			http://camel.apache.org/schema/spring
 			http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+	<bean id="activemq" primary="true"
+		class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="configuration" ref="jmsConfig" />
+		<property name="transacted" value="true" />
+		<property name="transactionManager"	ref="jmsTransactionManager" />
+		<!-- we do not want any exceptions to be logged -->
+		<property name="errorHandlerLoggingLevel" value="OFF" />
+		<property name="errorHandlerLogStackTrace" value="false" />
+	</bean>
+
+	<bean id="transactionErrorHandler" class="org.apache.camel.spring.spi.TransactionErrorHandlerBuilder">
+		<property name="rollbackLoggingLevel" value="DEBUG" />
+		<property name="transactionTemplate" ref="PROPAGATION_REQUIRED" />
+	</bean>
+
+	<bean id="PROPAGATION_REQUIRED" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="jmsTransactionManager" />
+	</bean>
+
 	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
 
 		<restConfiguration bindingMode="auto" component="servlet" />
@@ -14,22 +33,30 @@
 		<rest>
 			<post consumes="application/json" produces="text" uri="/say" type="java.lang.String" outType="java.lang.String">
 				<param name="body" required="true" type="body" />
-				<to uri="direct:route-1" />
+				<to uri="direct:route1" />
 			</post>
 		</rest>
 
-		<route id="route-1">
-			<from uri="direct:route-1" />
+		<route id="_route1">
+			<from uri="direct:route1" />
 			<log message="## process route 1 ${body}"/>
-		    <to uri="direct:route-2" />
+   			<to uri="jms:queue:example1?exchangePattern=InOnly" />
 		</route>
 
-		<route id="route-2">
-			<from uri="direct:route-2" />
+		<route id="_route2">
+			<from uri="jms:queue:example1?cacheLevelName=CACHE_CONSUMER" />
 			<log message="## process route 2 ${body}"/>
-		    <transform>
-		      <simple>Hello ${body}</simple>
-		    </transform>
+	        <choice>
+	            <when>
+	                <simple>${body} == 'Error'</simple>
+	                <throwException exceptionType="java.lang.IllegalArgumentException" message="illegal argument found"/>
+	            </when>
+	            <otherwise>
+				    <transform>
+				      <simple>Hello ${body}</simple>
+				    </transform>
+	            </otherwise>
+	        </choice>
 		</route>
 		
 	</camelContext>

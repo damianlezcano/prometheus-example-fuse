@@ -40,6 +40,18 @@
 	      <artifactId>camel-servlet</artifactId>
 	    </dependency>  
 
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-camel</artifactId>
+			<version>5.11.0.redhat-630224</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+			<version>5.11.0.redhat-630224</version>
+		</dependency>
+
   	</dependencies>
 
 	<build>

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
  * Camel routes
  */
 @SpringBootApplication
-@ImportResource({ "classpath:spring/camel-context.xml" })
+@ImportResource({ "classpath:spring/camel-ds.xml", "classpath:spring/camel-context.xml" })
 public class Application {
 
 	// must have a main method spring-boot can run

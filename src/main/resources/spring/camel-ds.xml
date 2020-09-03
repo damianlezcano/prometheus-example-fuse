@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="     http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd      http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+ 	<bean id="poolConnectionFactory"  class="org.apache.activemq.pool.PooledConnectionFactory" init-method="start" destroy-method="stop" primary="true">
+        <property name="maxConnections" value="${jms.maxConnections}"/>
+        <property name="idleTimeout" value="0"/>
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    </bean>
+
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+	    <property name="brokerURL" value="${jms.brokerURL}"/>
+	    <property name="userName" value="${jms.userName}"/>
+	    <property name="password" value="${jms.password}"/>
+        <property name="trustAllPackages" value="true"/>
+        <property name="redeliveryPolicy" ref="amqRedeliveryPolicy" />
+    </bean>
+
+    <bean id="jmsTransactionManager" class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="poolConnectionFactory"/>
+    </bean>
+
+	<bean id="amqRedeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">
+		<property name="initialRedeliveryDelay" value="${jms.initialRedeliveryDelay}" />
+		<property name="redeliveryDelay" value="${jms.redeliveryDelay}" />
+		<property name="maximumRedeliveries" value="${jms.maximumRedeliveries}" />
+		<property name="queue" value="api1-circuitbreaker" />
+	</bean>
+    
+	<bean id="jmsConfig" class="org.apache.camel.component.jms.JmsConfiguration">
+	    <property name="connectionFactory" ref="poolConnectionFactory"/>
+	    <property name="concurrentConsumers" value="${jms.concurrentConsumers}"/>
+	</bean>
+
+</beans>
