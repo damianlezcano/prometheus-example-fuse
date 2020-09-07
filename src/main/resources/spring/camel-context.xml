@@ -59,7 +59,7 @@
 			<log message="## process route 2 -> ${body}"/>
 	        <choice>
 	            <when>
-	                <simple>${body} == 'Error'</simple>
+	                <simple>${body} == 'error'</simple>
 	                <throwException exceptionType="java.lang.IllegalArgumentException" message="illegal argument found"/>
 	            </when>
 	            <otherwise>
