@@ -44,6 +44,14 @@
 		    </setBody>
 			<log message="## process route 1 -> ${body}"/>
    			<to uri="jms:queue:example1?exchangePattern=InOnly" />
+	        <choice>
+	            <when>
+	                <simple>${body} == 'error'</simple>
+		            <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+		                <simple resultType="java.lang.Integer">500</simple>
+		            </setHeader>
+	            </when>
+	        </choice>
 		</route>
 
 		<route id="_route2">

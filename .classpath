@@ -46,4 +46,22 @@
   <classpathentry kind="var" path="M2_REPO/org/apache/camel/camel-core-starter/2.21.0.fuse-720050-redhat-00001/camel-core-starter-2.21.0.fuse-720050-redhat-00001.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/camel/camel-servlet/2.21.0.fuse-720050-redhat-00001/camel-servlet-2.21.0.fuse-720050-redhat-00001.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/camel/camel-http-common/2.21.0.fuse-720050-redhat-00001/camel-http-common-2.21.0.fuse-720050-redhat-00001.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-camel/5.11.0.redhat-630224/activemq-camel-5.11.0.redhat-630224.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/camel/camel-jms/2.21.0.fuse-720050-redhat-00001/camel-jms-2.21.0.fuse-720050-redhat-00001.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-jms/4.3.19.RELEASE/spring-jms-4.3.19.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-messaging/4.3.19.RELEASE/spring-messaging-4.3.19.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jms_2.0_spec/1.0.0.alpha-2-redhat-2/geronimo-jms_2.0_spec-1.0.0.alpha-2-redhat-2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-spring/5.11.0.redhat-630356/activemq-spring-5.11.0.redhat-630356.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/xbean/xbean-spring/4.5/xbean-spring-4.5.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-broker/5.11.0.redhat-630356/activemq-broker-5.11.0.redhat-630356.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-client/5.11.0.redhat-630356/activemq-client-5.11.0.redhat-630356.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jms_1.1_spec/1.1.1.redhat-2/geronimo-jms_1.1_spec-1.1.1.redhat-2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/fusesource/hawtbuf/hawtbuf/1.11.0.redhat-2/hawtbuf-1.11.0.redhat-2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-j2ee-management_1.1_spec/1.0.1/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-openwire-legacy/5.11.0.redhat-630356/activemq-openwire-legacy-5.11.0.redhat-630356.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar" sourcepath="M2_REPO/com/google/guava/guava/18.0/guava-18.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-pool/5.11.0.redhat-630224/activemq-pool-5.11.0.redhat-630224.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/activemq/activemq-jms-pool/5.11.0.redhat-630356/activemq-jms-pool-5.11.0.redhat-630356.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jta_1.0.1B_spec/1.0.1/geronimo-jta_1.0.1B_spec-1.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-pool/commons-pool/1.6/commons-pool-1.6.jar"/>
 </classpath>
