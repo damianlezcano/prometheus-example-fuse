@@ -31,21 +31,24 @@
 		<restConfiguration bindingMode="auto" component="servlet" />
 
 		<rest>
-			<post consumes="application/json" produces="text" uri="/say" type="java.lang.String" outType="java.lang.String">
-				<param name="body" required="true" type="body" />
+			<get produces="text" uri="/say" type="java.lang.String" outType="java.lang.String">
+				<param dataType="string" name="hello" required="true" type="query"/>
 				<to uri="direct:route1" />
-			</post>
+			</get>
 		</rest>
 
 		<route id="_route1">
 			<from uri="direct:route1" />
-			<log message="## process route 1 ${body}"/>
+		    <setBody>
+		      <simple>${header.hello}</simple>
+		    </setBody>
+			<log message="## process route 1 -> ${body}"/>
    			<to uri="jms:queue:example1?exchangePattern=InOnly" />
 		</route>
 
 		<route id="_route2">
 			<from uri="jms:queue:example1?cacheLevelName=CACHE_CONSUMER" />
-			<log message="## process route 2 ${body}"/>
+			<log message="## process route 2 -> ${body}"/>
 	        <choice>
 	            <when>
 	                <simple>${body} == 'Error'</simple>
