@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster {
-                        openshift.withProject("ccb-wom-uat") { {
+                        openshift.withProject("ccb-wom-uat") {
                             openshift.selector("bc", env.APP_NAME).startBuild("--from-dir=./target", "--wait=true");
                         }
                     }
