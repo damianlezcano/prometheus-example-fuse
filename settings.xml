@@ -55,6 +55,28 @@
       </configuration>
     </server>
     <server>
+      <id>edenor-nexus</id>
+      <configuration>
+        <httpConfiguration>
+          <all>
+            <connectionTimeout>1100</connectionTimeout>
+            <readTimeout>1100</readTimeout>
+          </all>
+        </httpConfiguration>
+      </configuration>
+    </server>
+    <server>
+      <id>edenor-releases</id>
+      <configuration>
+        <httpConfiguration>
+          <all>
+            <connectionTimeout>1100</connectionTimeout>
+            <readTimeout>1100</readTimeout>
+          </all>
+        </httpConfiguration>
+      </configuration>
+    </server>
+    <server>
       <id>central</id>
       <configuration>
         <httpConfiguration>
@@ -72,6 +94,39 @@
         <id>fuse.repos</id>
         
         <repositories>
+           <repository>
+              <id>edenor-nexus</id>
+              <url>https://nexus-nexus.noprod-apps.pro.edenor/nexus/content/groups/public/</url>
+              <releases>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+              </releases>
+              <snapshots>
+                 <enabled>false</enabled>
+              </snapshots>
+           </repository>
+			<repository>
+				<id>edenor-releases</id>
+				<url>https://nexus-nexus.noprod-apps.pro.edenor/nexus/content/repositories/releases/</url>
+				<releases>
+					<enabled>true</enabled>
+					<updatePolicy>never</updatePolicy>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+			</repository>           
+           <repository>
+              <id>edenor-releases</id>
+              <url>https://nexus-nexus.noprod-apps.pro.edenor/nexus/content/repositories/releases/</url>
+              <releases>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+              </releases>
+              <snapshots>
+                 <enabled>false</enabled>
+              </snapshots>
+           </repository>
            <repository>
               <id>redhat-ga-repository</id>
               <url>https://maven.repository.redhat.com/ga</url>
@@ -99,14 +154,31 @@
               <name>JBoss Public Repository Group</name>
               <url>https://repository.jboss.org/nexus/content/groups/public/</url>
            </repository>
-           <repository>
-           	<id>Datanucleus</id>
-           	<name>Datanucleus</name>
-           	<url>http://www.datanucleus.org/downloads/maven2/</url>
-           </repository>
         </repositories>
 
         <pluginRepositories>
+           <pluginRepository>
+              <id>edenor-nexus</id>
+              <url>https://nexus-nexus.noprod-apps.pro.edenor/nexus/content/groups/public/</url>
+              <releases>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+              </releases>
+              <snapshots>
+                 <enabled>false</enabled>
+              </snapshots>
+           </pluginRepository>
+           <pluginRepository>
+              <id>edenor-releases</id>
+              <url>https://nexus-nexus.noprod-apps.pro.edenor/nexus/content/repositories/releases/</url>
+              <releases>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+              </releases>
+              <snapshots>
+                 <enabled>false</enabled>
+              </snapshots>
+           </pluginRepository>
            <pluginRepository>
               <id>redhat-ga-repository</id>
               <url>https://maven.repository.redhat.com/ga</url>
